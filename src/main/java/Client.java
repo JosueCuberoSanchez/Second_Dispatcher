@@ -29,6 +29,7 @@ public class Client extends Connection {
             }
             super.createSocket("client",Integer.parseInt(parsedTable[1]),parsedTable[2]);
             this.outServer = new DataOutputStream(this.cs.getOutputStream());
+            System.out.println(parsedTable[0]);
             this.outServer.writeUTF(parsedTable[0]);
             this.cs.close();
         }

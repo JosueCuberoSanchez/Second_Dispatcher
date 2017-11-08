@@ -19,8 +19,8 @@ public class Dispatcher {
         this.ipTable.put("201.6.0.0",new IpData("192.168.100.16", "12.0.0.8", "165.8.0.6", 1,0));//legos
         this.ipTable.put("25.0.0.0",new IpData("192.168.100.16", "12.0.0.8", "165.8.0.6", 0,5555));//luces
         this.oneToOneRelation = new HashMap<String, Pair<String,String>>();
-        this.oneToOneRelation.put("165.8.0.6",new Pair<String,String>("","CRR6"));
-        this.oneToOneRelation.put("165.8.25.6",new Pair<String,String>("","CRR4"));
+        this.oneToOneRelation.put("165.8.0.6",new Pair<String,String>("127.0.0.1","6666"));//cambiar luego!
+        this.oneToOneRelation.put("165.8.25.6",new Pair<String,String>("127.0.0.1","6666"));
     }
 
     public void startDispatcher(){

@@ -17,7 +17,7 @@ public class Server extends Connection {
     }
 
     public void startServer() throws IOException {
-        super.createSocket("server", 6666, "localhost");
+        super.createSocket("server", 9999, "localhost");
         try {
             while (true) {
                 System.out.println("\nServidor  esperando...");
@@ -25,7 +25,7 @@ public class Server extends Connection {
                 System.out.println("Cliente conectado en el servidor ");
                 this.outClient = new DataInputStream(this.cs.getInputStream());
                 String newMessage = this.outClient.readUTF();
-                System.out.println(newMessage);
+                //System.out.println(newMessage);
                 Client client = new Client(this.ipTable,this.oneToOneRelation);
                 client.startClient(newMessage);
             }
