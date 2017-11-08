@@ -13,7 +13,7 @@ public class Dispatcher {
     public Dispatcher(){
         this.ipTable = new HashMap<String,IpData>();
                         //key is network ip      computer ip                                 through
-        this.ipTable.put("12.0.0.0",new IpData("192.168.100.16", "12.0.0.8", "12.0.0.7", 0,6666));//banderas
+        this.ipTable.put("12.0.0.0",new IpData("127.0.0.1", "12.0.0.8", "12.0.0.7", 0,8888));//banderas
         this.ipTable.put("200.5.0.0",new IpData("192.168.100.16", "200.5.0.2", "12.0.0.7",1,0));//paletas
         this.ipTable.put("140.90.0.0",new IpData("192.168.100.16", "12.0.0.8", "12.0.0.7", 2,0));//bolinchas
         this.ipTable.put("201.6.0.0",new IpData("192.168.100.16", "12.0.0.8", "165.8.0.6", 1,0));//legos
