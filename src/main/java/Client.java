@@ -9,11 +9,13 @@ import java.util.Map;
  * Created by josue on 07/11/17.
  */
 public class Client extends Connection {
-    private Map<String, IpData> ipTable;
+    private Map<String, IpData> ipTableJosue;
+    private Map<String, IpData> ipTableSilvia;
     private Map<String,Pair<String,String>> oneToOneRelation;
 
-    public  Client(Map<String,IpData> ipTable,Map<String,Pair<String,String>> oneToOneRelation){
-        this.ipTable = ipTable;
+    public  Client(Map<String,IpData> ipTableJosue,Map<String,IpData> ipTableSilvia,Map<String,Pair<String,String>> oneToOneRelation){
+        this.ipTableJosue = ipTableJosue;
+        this.ipTableSilvia = ipTableSilvia;
         this.oneToOneRelation = oneToOneRelation;
     }
 
@@ -23,7 +25,11 @@ public class Client extends Connection {
             String[] parsedTable = new String[3];
             parsedTable[0] = "";
             if(messageArray[0].equalsIgnoreCase("1")) {
-                parsedTable = this.parseTableForRouter(parsedTable,messageArray);
+                if(messageArray[3].equalsIgnoreCase("CRR6")) { //es josue
+                    parsedTable = this.parseTableForRouter(parsedTable, messageArray,true);
+                } else {
+                    parsedTable = this.parseTableForRouter(parsedTable, messageArray,false);
+                }
             } else {
                 parsedTable = this.parseTableForNode(parsedTable,messageArray);
             }
@@ -50,8 +56,14 @@ public class Client extends Connection {
         return parsedTable;
     }
 
-    public String[] parseTableForRouter(String[] parsedTable,String[] messageArray){
-        Iterator iterator = this.ipTable.entrySet().iterator();
+    public String[] parseTableForRouter(String[] parsedTable,String[] messageArray, boolean router){
+        Map<String,IpData> temporalMap;
+        if(router){
+            temporalMap = this.ipTableJosue;
+        } else {
+            temporalMap = this.ipTableSilvia;
+        }
+        Iterator iterator = temporalMap.entrySet().iterator();
         while(iterator.hasNext()){
             Map.Entry pair = (Map.Entry) iterator.next();
             parsedTable[0] = parsedTable[0] + pair.getKey().toString() + ",";

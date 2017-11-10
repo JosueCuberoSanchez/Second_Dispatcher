@@ -8,11 +8,13 @@ import java.util.Map;
  * Created by josue on 07/11/17.
  */
 public class Server extends Connection {
-    private Map<String, IpData> ipTable;
+    private Map<String, IpData> ipTableJosue;
+    private Map<String, IpData> ipTableSilvia;
     private Map<String,Pair<String,String>> oneToOneRelation;
 
-    public Server(Map<String, IpData> ipTable,Map<String,Pair<String,String>> oneToOneRelation){
-        this.ipTable = ipTable;
+    public Server(Map<String, IpData> ipTableJosue,Map<String, IpData> ipTableSilvia,Map<String,Pair<String,String>> oneToOneRelation){
+        this.ipTableJosue = ipTableJosue;
+        this.ipTableSilvia = ipTableSilvia;
         this.oneToOneRelation = oneToOneRelation;
     }
 
@@ -26,7 +28,7 @@ public class Server extends Connection {
                 this.outClient = new DataInputStream(this.cs.getInputStream());
                 String newMessage = this.outClient.readUTF();
                 //System.out.println(newMessage);
-                Client client = new Client(this.ipTable,this.oneToOneRelation);
+                Client client = new Client(this.ipTableJosue,this.ipTableSilvia,this.oneToOneRelation);
                 client.startClient(newMessage);
             }
         } catch (Exception e) {
