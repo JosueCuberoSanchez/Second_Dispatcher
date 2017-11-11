@@ -5,7 +5,15 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by josue on 07/11/17.
+ * Universidad de Costa Rica
+ * Facultad de Ingeniería
+ * Escuela de Ciencias de la Computación e Informática
+ * Profesora: Gabriela Barrantes
+ * Autores:
+ * Abellán Jiménez Mariana B50031
+ * Brenes Solano Silvia B41133
+ * Cubero Sánchez Josué B42190
+ * Garita Centeno Alonso B42791
  */
 public class Server extends Connection {
     private Map<String, IpData> ipTableJosue;

@@ -5,8 +5,16 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 
-/**
- * Created by josue on 07/11/17.
+/*/**
+ * Universidad de Costa Rica
+ * Facultad de Ingeniería
+ * Escuela de Ciencias de la Computación e Informática
+ * Profesora: Gabriela Barrantes
+ * Autores:
+ * Abellán Jiménez Mariana B50031
+ * Brenes Solano Silvia B41133
+ * Cubero Sánchez Josué B42190
+ * Garita Centeno Alonso B42791
  */
 public class Client extends Connection {
     private Map<String, IpData> ipTableJosue;
@@ -35,7 +43,7 @@ public class Client extends Connection {
             }
             super.createSocket("client",Integer.parseInt(parsedTable[1]),parsedTable[2]);
             this.outServer = new DataOutputStream(this.cs.getOutputStream());
-            System.out.println(parsedTable[0]);
+            System.out.println("Enviando\n" + parsedTable[0] + "a: " + parsedTable[1] + ", " + parsedTable[2]);
             this.outServer.writeUTF(parsedTable[0]);
             this.cs.close();
         }
