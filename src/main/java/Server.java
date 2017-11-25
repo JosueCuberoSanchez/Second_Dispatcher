@@ -13,7 +13,6 @@ import java.util.Map;
  * Abellán Jiménez Mariana B50031
  * Brenes Solano Silvia B41133
  * Cubero Sánchez Josué B42190
- * Garita Centeno Alonso B42791
  */
 public class Server extends Connection {
     private Map<String, IpData> ipTableJosue;
@@ -26,6 +25,10 @@ public class Server extends Connection {
         this.oneToOneRelation = oneToOneRelation;
     }
 
+    /**
+     * Listens to the socket for incomming messages from routers or terminal nodes
+     * @throws IOException
+     */
     public void startServer() throws IOException {
         super.createSocket("server", 9999, "localhost");
         try {
@@ -35,7 +38,7 @@ public class Server extends Connection {
                 System.out.println("Cliente conectado en el servidor ");
                 this.outClient = new DataInputStream(this.cs.getInputStream());
                 String newMessage = this.outClient.readUTF();
-                //System.out.println(newMessage);
+                System.out.println("MENSAJE NUEVO\n"+newMessage);
                 Client client = new Client(this.ipTableJosue,this.ipTableSilvia,this.oneToOneRelation);
                 client.startClient(newMessage);
             }

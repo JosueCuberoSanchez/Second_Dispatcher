@@ -13,7 +13,6 @@ import java.net.Socket;
  * Abellán Jiménez Mariana B50031
  * Brenes Solano Silvia B41133
  * Cubero Sánchez Josué B42190
- * Garita Centeno Alonso B42791
  */
 public class Connection {
     private int PORT;

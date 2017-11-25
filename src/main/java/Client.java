@@ -14,7 +14,6 @@ import java.util.Map;
  * Abellán Jiménez Mariana B50031
  * Brenes Solano Silvia B41133
  * Cubero Sánchez Josué B42190
- * Garita Centeno Alonso B42791
  */
 public class Client extends Connection {
     private Map<String, IpData> ipTableJosue;
@@ -27,6 +26,11 @@ public class Client extends Connection {
         this.oneToOneRelation = oneToOneRelation;
     }
 
+    /**
+     * Checks if the message is for a terminal node or a router and parse the corresponding table.
+     * Sends an answer message processing for router o terminal node.
+     * @param message The message received from the listening socket
+     */
     public void startClient(String message){
         try {
             String[] messageArray = message.split("\n");
@@ -34,6 +38,7 @@ public class Client extends Connection {
             parsedTable[0] = "";
             if(messageArray[0].equalsIgnoreCase("1")) {
                 if(messageArray[3].equalsIgnoreCase("CRR6")) { //es josue
+                    System.out.println("HOLA");
                     parsedTable = this.parseTableForRouter(parsedTable, messageArray,true);
                 } else {
                     parsedTable = this.parseTableForRouter(parsedTable, messageArray,false);
@@ -52,6 +57,12 @@ public class Client extends Connection {
         }
     }
 
+    /**
+     * Parse a physical address table into a String
+     * @param parsedTable a 3 position array to store destiny ip, destiny port and the final message
+     * @param messageArray the message received from the socket split by \n
+     * @return the parsedTable received by parameter, filled
+     */
     public String[] parseTableForNode(String[] parsedTable,String[] messageArray){
         Iterator iterator = this.oneToOneRelation.entrySet().iterator();
         while(iterator.hasNext()){
@@ -64,6 +75,13 @@ public class Client extends Connection {
         return parsedTable;
     }
 
+    /**
+     * Parse a routing table into a String
+     * @param parsedTable a 3 position array to store destiny ip, destiny port and the final message
+     * @param messageArray the message received from the socket split by \n
+     * @param router a boolean that defines to which router the table is going
+     * @return the parsedTable received by parameter, filled
+     */
     public String[] parseTableForRouter(String[] parsedTable,String[] messageArray, boolean router){
         Map<String,IpData> temporalMap;
         if(router){
@@ -83,6 +101,11 @@ public class Client extends Connection {
         return parsedTable;
     }
 
+    /**
+     * Fills the missing fields from the message array (ip and port)
+     * @param parsedTable a 3 position array to store destiny ip, destiny port and the final message
+     * @param messageArray the message received from the socket split by \n
+     */
     public void getPortAndIp(String[] messageArray,String[] parsedTable){
         parsedTable[1] = messageArray[4];
         parsedTable[2] = messageArray[2];
