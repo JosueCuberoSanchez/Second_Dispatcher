@@ -33,6 +33,7 @@ public class Maps {
         this.routing5 = new HashMap<String, String>();
         this.routing6 = new HashMap<String, String>();
         this.routing7 = new HashMap<String, String>();
+        this.fillRoutingTables();
 
         this.arp1 = new HashMap<String, ARPData>();
         this.arp2 = new HashMap<String, ARPData>();
@@ -44,7 +45,7 @@ public class Maps {
         this.fillARPTables();
     }
 
-    public void filRoutingTables(){
+    public void fillRoutingTables() {
         routing1.put("197.197.197.0", "127.7.1.6");
         routing1.put("10.4.2.0", "127.7.1.6");
         routing1.put("192.118.1.10", "192.118.1.50");
@@ -86,6 +87,8 @@ public class Maps {
         routing7.put("192.118.1.10", "178.20.2.20");
         routing7.put("178.20.2.0", "178.20.2.50");
         routing7.put("123.7.2.0", "178.20.2.20");
+    }
+
     public void fillARPTables(){
         this.arp1.put("192.118.1.2",new ARPData("1.1","1.1","localhost",5501));
         this.arp1.put("123.7.2.3",new ARPData("1.2","1.2","localhost",5502));
