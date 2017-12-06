@@ -3,8 +3,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by josue on 05/12/17.
+ * Universidad de Costa Rica
+ * Facultad de Ingeniería
+ * Escuela de Ciencias de la Computación e Informática
+ * Profesora: Gabriela Barrantes
+ * Autores:
+ * Abellán Jiménez Mariana B50031
+ * Brenes Solano Silvia B41133
+ * Cubero Sánchez Josué B42190
  */
+
 public class Maps {
 
     private Map<String, NodeData> terminalNode1; //197.197.197.0
@@ -20,7 +28,6 @@ public class Maps {
     private Map<String, String> routing5;
     private Map<String, String> routing6;
     private Map<String, String> routing7;
-
 
     private Map<String,ARPData> arp1;
     private Map<String,ARPData> arp2;
