@@ -129,7 +129,7 @@ public class Maps {
 
         //10.4.2.0
         this.terminalNode5.put("197.197.197.0",new NodeData("10.4.2.30", "127.0.0.1" , 7502));
-        this.terminalNode5.put("123.7.2.0",new NodeData("10.4.2.4", "127.0.0.1" , 8001));
+        this.terminalNode5.put("123.7.2.0",new NodeData("10.4.2.40", "127.0.0.1" , 8001));
         this.terminalNode5.put("192.118.1.0",new NodeData("10.4.2.5", "127.0.0.1" , 6505));
         this.terminalNode5.put("178.20.2.0",new NodeData("10.4.2.3", "127.0.0.1" , 7002));
 
