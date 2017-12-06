@@ -15,14 +15,10 @@ import java.util.Map;
  * Cubero Sánchez Josué B42190
  */
 public class Server extends Connection {
-    private Map<String, IpData> ipTableJosue;
-    private Map<String, IpData> ipTableSilvia;
-    private Map<String,Pair<String,String>> oneToOneRelation;
+    private Maps maps;
 
-    public Server(Map<String, IpData> ipTableJosue,Map<String, IpData> ipTableSilvia,Map<String,Pair<String,String>> oneToOneRelation){
-        this.ipTableJosue = ipTableJosue;
-        this.ipTableSilvia = ipTableSilvia;
-        this.oneToOneRelation = oneToOneRelation;
+    public Server(Maps maps){
+       this.maps = maps;
     }
 
     /**
@@ -39,8 +35,8 @@ public class Server extends Connection {
                 this.outClient = new DataInputStream(this.cs.getInputStream());
                 String newMessage = this.outClient.readUTF();
                 System.out.println("MENSAJE NUEVO\n"+newMessage);
-                Client client = new Client(this.ipTableJosue,this.ipTableSilvia,this.oneToOneRelation);
-                client.startClient(newMessage);
+                Client client = new Client(this.maps);
+                //client.startClient(newMessage);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
