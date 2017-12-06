@@ -16,14 +16,10 @@ import java.util.Map;
  * Cubero Sánchez Josué B42190
  */
 public class Client extends Connection {
-    private Map<String, IpData> ipTableJosue;
-    private Map<String, IpData> ipTableSilvia;
-    private Map<String,Pair<String,String>> oneToOneRelation;
+    private Maps maps;
 
-    public  Client(Map<String,IpData> ipTableJosue,Map<String,IpData> ipTableSilvia,Map<String,Pair<String,String>> oneToOneRelation){
-        this.ipTableJosue = ipTableJosue;
-        this.ipTableSilvia = ipTableSilvia;
-        this.oneToOneRelation = oneToOneRelation;
+    public  Client(Maps maps){
+        this.maps = maps;
     }
 
     /**
@@ -31,7 +27,7 @@ public class Client extends Connection {
      * Sends an answer message processing for router o terminal node.
      * @param message The message received from the listening socket
      */
-    public void startClient(String message){
+    /*public void startClient(String message){
         try {
             String[] messageArray = message.split("\n");
             String[] parsedTable = new String[3];
@@ -55,7 +51,7 @@ public class Client extends Connection {
         catch (Exception e){
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 
     /**
      * Parse a physical address table into a String
@@ -63,7 +59,7 @@ public class Client extends Connection {
      * @param messageArray the message received from the socket split by \n
      * @return the parsedTable received by parameter, filled
      */
-    public String[] parseTableForNode(String[] parsedTable,String[] messageArray){
+    /*public String[] parseTableForNode(String[] parsedTable,String[] messageArray){
         Iterator iterator = this.oneToOneRelation.entrySet().iterator();
         while(iterator.hasNext()){
             Map.Entry pair = (Map.Entry) iterator.next();
@@ -73,7 +69,7 @@ public class Client extends Connection {
         } //ya aca tiene el campo de mensaje lleno ak7
         this.getPortAndIp(messageArray,parsedTable);
         return parsedTable;
-    }
+    }*/
 
     /**
      * Parse a routing table into a String
@@ -82,7 +78,7 @@ public class Client extends Connection {
      * @param router a boolean that defines to which router the table is going
      * @return the parsedTable received by parameter, filled
      */
-    public String[] parseTableForRouter(String[] parsedTable,String[] messageArray, boolean router){
+    /*public String[] parseTableForRouter(String[] parsedTable,String[] messageArray, boolean router){
         Map<String,IpData> temporalMap;
         if(router){
             temporalMap = this.ipTableJosue;
@@ -99,7 +95,7 @@ public class Client extends Connection {
         } //ya aca tiene el campo de mensaje lleno ak7
         this.getPortAndIp(messageArray,parsedTable);
         return parsedTable;
-    }
+    }*/
 
     /**
      * Fills the missing fields from the message array (ip and port)
