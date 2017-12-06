@@ -2,39 +2,37 @@
  * Created by josue on 06/12/17.
  */
 public class ARPData {
-    private String label;
-    private String physicalAddress;
-    private String realIp;
-    private int port;
+    private String externalInterface;
+    private String externalInterfaceIp;
+    private int externalInterfacePort;
 
-    public ARPData(String label,String physicalAddress,String realIp,int port){
-        this.label = label;
-        this.physicalAddress = physicalAddress;
-        this.realIp = realIp;
-        this.port = port;
+    public ARPData(String externalInterface, String externalInterfaceIp, int externalInterfacePort) {
+        this.externalInterface = externalInterface;
+        this.externalInterfaceIp = externalInterfaceIp;
+        this.externalInterfacePort = externalInterfacePort;
     }
 
-    public String getLabel() {
-        return this.label;
+    public String getExternalInterface() {
+        return this.externalInterface;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setExternalInterface(String externalInterface) {
+        this.externalInterface = externalInterface;
     }
 
-    public String getPhysicalAddress() {
-        return this.physicalAddress;
+    public String getExternalInterfaceIp() {
+        return this.externalInterfaceIp;
     }
 
-    public void setPhysicalAddress(String physicalAddress) {
-        this.physicalAddress = physicalAddress;
+    public void setExternalInterfaceIp(String externalInterfaceIp) {
+        this.externalInterfaceIp = externalInterfaceIp;
     }
 
-    public String getRealIp() {
-        return this.realIp;
+    public int getExternalInterfacePort() {
+        return this.externalInterfacePort;
     }
 
-    public void setRealIp(String realIp) {
-        this.realIp = realIp;
+    public void setExternalInterfacePort(int externalInterfacePort) {
+        this.externalInterfacePort = externalInterfacePort;
     }
 }

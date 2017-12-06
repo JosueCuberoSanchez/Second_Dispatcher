@@ -135,35 +135,50 @@ public class Maps {
 
     }
     public void fillARPTables(){
-        this.arp1.put("192.118.1.2",new ARPData("1.1","1.1","localhost",5501));
-        this.arp1.put("123.7.2.3",new ARPData("1.2","1.2","localhost",5502));
-        this.arp1.put("123.7.2.6",new ARPData("1.3","1.3","localhost",5503));
+        this.arp1.put("192.118.1.2",new ARPData("192.118.1.2","localhost",6001));
+        this.arp1.put("123.7.2.3",new ARPData("123.7.2.1","localhost",6501));
+        this.arp1.put("123.7.2.6",new ARPData("123.7.13.3","localhost",8002));
+        this.arp1.put("10.4.2.50",new ARPData("10.4.2.50","localhost",9002));
+        this.arp1.put("123.7.2.50",new ARPData("123.7.2.50","localhost",9004));
 
-        this.arp2.put("192.118.1.2",new ARPData("2.1","2.1","localhost",6001));
-        this.arp2.put("178.20.2.2",new ARPData("2.2","2.2","localhost",6002));
-        this.arp2.put("192.118.1.30",new ARPData("2.3","2.3","localhost",6003));
+        this.arp2.put("192.118.1.2",new ARPData("192.118.1.2","localhost",5501));
+        this.arp2.put("178.20.2.4",new ARPData("178.20.2.20","localhost",7001));
+        this.arp2.put("192.118.1.30",new ARPData("192.118.1.20","localhost",6502));
+        this.arp2.put("192.118.1.50",new ARPData("192.118.1.50","localhost",9005));
+        this.arp2.put("178.20.2.50",new ARPData("178.20.2.50","localhost",9003));
 
-        this.arp3.put("123.7.2.1",new ARPData("3.1","3.1","localhost",6501));
-        this.arp3.put("192.118.1.20",new ARPData("3.2","3.2","localhost",6502));
-        this.arp3.put("178.20.2.7",new ARPData("3.3","3.3","localhost",6503));
-        this.arp3.put("10.4.2.4",new ARPData("3.4","3.4","localhost",6504));
-        this.arp3.put("10.4.2.5",new ARPData("3.5","3.5","localhost",6505));
+        this.arp3.put("123.7.2.1",new ARPData("123.7.2.3","localhost",5502));
+        this.arp3.put("192.118.1.20",new ARPData("192.118.1.30","localhost",6003));
+        this.arp3.put("178.20.2.7",new ARPData("178.20.2.30","localhost",8502));
+        this.arp3.put("10.4.2.4",new ARPData("10.4.2.3","localhost",7002));
+        this.arp3.put("10.4.2.5",new ARPData("10.4.1.30","localhost",7502));
+        this.arp3.put("123.7.2.50",new ARPData("123.7.2.50","localhost",9004));
+        this.arp3.put("192.118.1.50",new ARPData("192.118.1.50","localhost",9005));
+        this.arp3.put("178.20.2.50",new ARPData("178.20.2.50","localhost",9003));
+        this.arp3.put("10.4.2.0",new ARPData("10.4.2.0","localhost",9002));
 
-        this.arp4.put("178.20.2.2",new ARPData("4.1","4.1","localhost",7001));
-        this.arp4.put("10.4.2.3",new ARPData("4.2","4.2","localhost",7002));
-        this.arp4.put("10.4.2.6",new ARPData("4.3","4.3","localhost",7003));
-        this.arp4.put("197.197.197.5",new ARPData("4.4","4.4","localhost",7004));
-        this.arp4.put("178.20.2.7",new ARPData("4.5","4.5","localhost",7005));
+        this.arp4.put("178.20.2.2",new ARPData("178.20.2.4","localhost",6002));
+        this.arp4.put("10.4.2.3",new ARPData("10.4.2.4","localhost",6504));
+        this.arp4.put("10.4.2.6",new ARPData("10.4.2.40","localhost",8001));
+        this.arp4.put("197.197.197.5",new ARPData("197.197.197.4","localhost",7501));
+        this.arp4.put("178.20.2.7",new ARPData("178.20.2.4","localhost",8503));
+        this.arp4.put("178.20.2.50",new ARPData("178.20.2.50","localhost",8503));
+        this.arp4.put("197.197.197.50",new ARPData("197.197.197.50","localhost",9001));
+        this.arp4.put("10.4.2.50",new ARPData("10.4.2.50","localhost",9002));
 
-        this.arp5.put("197.197.197.4",new ARPData("5.1","5.1","localhost",7501));
-        this.arp5.put("10.4.2.30",new ARPData("5.2","5.2","localhost",7502));
+        this.arp5.put("197.197.197.4",new ARPData("197.197.197.5","localhost",7004));
+        this.arp5.put("10.4.2.30",new ARPData("10.4.2.5","localhost",6505));
+        this.arp5.put("10.4.2.50",new ARPData("10.4.2.50","localhost",9002));
+        this.arp5.put("197.197.197.50",new ARPData("197.197.197.50","localhost",9001));
 
-        this.arp6.put("192.7.13.1",new ARPData("6.1","6.1","localhost",8001));
-        this.arp6.put("192.7.13.2",new ARPData("6.2","6.2","localhost",8002));
-        this.arp6.put("192.7.13.3",new ARPData("6.3","6.3","localhost",8003));
+        this.arp6.put("10.4.2.40",new ARPData("10.4.2.6","localhost",7003));
+        this.arp6.put("123.7.13.3",new ARPData("127.7.1.6","localhost",5503));
+        this.arp6.put("10.4.2.50",new ARPData("10.4.2.50","localhost",9002));
+        this.arp6.put("123.7.2.50",new ARPData("123.7.2.50","localhost",9004));
 
-        this.arp7.put("178.20.2.30",new ARPData("7.1","7.1","localhost",8501));
-        this.arp7.put("178.20.2.4",new ARPData("7.2","7.2","localhost",8502));
-        this.arp7.put("178.20.2.20",new ARPData("7.3","7.3","localhost",8503));
+        this.arp7.put("178.20.2.20",new ARPData("178.20.2.4","localhost",6002));
+        this.arp7.put("178.20.2.30",new ARPData("178.20.2.7","localhost",6503));
+        this.arp7.put("178.20.2.4",new ARPData("178.20.2.7","localhost",7005));
+        this.arp7.put("178.20.2.50",new ARPData("178.20.2.50","localhost",7003));
     }
 }
