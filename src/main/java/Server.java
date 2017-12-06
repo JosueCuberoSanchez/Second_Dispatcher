@@ -29,14 +29,14 @@ public class Server extends Connection {
         super.createSocket("server", 9999, "localhost");
         try {
             while (true) {
-                System.out.println("\nServidor  esperando...");
+                System.out.println("\nServidor de dispatcher esperando...");
                 this.cs = this.ss.accept();
-                System.out.println("Cliente conectado en el servidor ");
+                System.out.println("Alguien se conectó con el dispatcher");
                 this.outClient = new DataInputStream(this.cs.getInputStream());
                 String newMessage = this.outClient.readUTF();
-                System.out.println("MENSAJE NUEVO\n"+newMessage);
+                System.out.println("MENSAJE NUEVO!\n"+newMessage+"\n"); //comentar
                 Client client = new Client(this.maps);
-                //client.startClient(newMessage);
+                client.startClient(newMessage);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

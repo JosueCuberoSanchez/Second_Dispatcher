@@ -27,31 +27,9 @@ public class Client extends Connection {
      * Sends an answer message processing for router o terminal node.
      * @param message The message received from the listening socket
      */
-    /*public void startClient(String message){
-        try {
-            String[] messageArray = message.split("\n");
-            String[] parsedTable = new String[3];
-            parsedTable[0] = "";
-            if(messageArray[0].equalsIgnoreCase("1")) {
-                if(messageArray[3].equalsIgnoreCase("CRR6")) { //es josue
-                    System.out.println("HOLA");
-                    parsedTable = this.parseTableForRouter(parsedTable, messageArray,true);
-                } else {
-                    parsedTable = this.parseTableForRouter(parsedTable, messageArray,false);
-                }
-            } else {
-                parsedTable = this.parseTableForNode(parsedTable,messageArray);
-            }
-            super.createSocket("client",Integer.parseInt(parsedTable[1]),parsedTable[2]);
-            this.outServer = new DataOutputStream(this.cs.getOutputStream());
-            System.out.println("Enviando\n" + parsedTable[0] + "a: " + parsedTable[1] + ", " + parsedTable[2]);
-            this.outServer.writeUTF(parsedTable[0]);
-            this.cs.close();
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-    }*/
+    public void startClient(String message){
+
+    }
 
     /**
      * Parse a physical address table into a String
