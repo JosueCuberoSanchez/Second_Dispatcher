@@ -1,5 +1,4 @@
-import javafx.util.Pair;
-
+import javax.xml.soap.Node;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +6,12 @@ import java.util.Map;
  * Created by josue on 05/12/17.
  */
 public class Maps {
+
+    private Map<String, NodeData> terminalNode1; //197.197.197.0
+    private Map<String,NodeData> terminalNode2; //192.118.1.0
+    private Map<String,NodeData> terminalNode3; //178.20.2.0
+    private Map<String,NodeData> terminalNode4; //123.7.2.0
+    private Map<String,NodeData> terminalNode5; //10.4.2.0
     private Map<String,ARPData> arp1;
     private Map<String,ARPData> arp2;
     private Map<String,ARPData> arp3;
@@ -24,8 +29,48 @@ public class Maps {
         this.arp6 = new HashMap<String, ARPData>();
         this.arp7 = new HashMap<String, ARPData>();
         this.fillARPTables();
+
+        this.terminalNode1 = new HashMap<String, NodeData>();
+        this.terminalNode2 = new HashMap<String, NodeData>();
+        this.terminalNode3 = new HashMap<String, NodeData>();
+        this.terminalNode4 = new HashMap<String, NodeData>();
+        this.terminalNode5 = new HashMap<String, NodeData>();
+        this.fillTerminalNodeTable();
     }
 
+    //formato: Destino + a traves + Ip Real + Puerto
+    public void fillTerminalNodeTable() {
+        //197.197.197.0
+        this.terminalNode1.put("123.7.2.0", new NodeData("197.197.197.4", "127.0.0.1" , 7501));
+        this.terminalNode1.put("192.118.1.0",new NodeData("197.197.197.5", "127.0.0.1" , 7004));
+        this.terminalNode1.put("178.20.2.0",new NodeData("197.197.197.5", "127.0.0.1" , 7004));
+        this.terminalNode1.put("10.4.2.0",new NodeData("197.197.197.4", "127.0.0.1" , 75001));
+
+        //192.118.1.0
+        this.terminalNode2.put("123.7.2.0", new NodeData("192.118.1.2", "127.0.0.1" , 5501));
+        this.terminalNode2.put("197.197.197.0",new NodeData("192.118.1.20", "127.0.0.1" , 6502));
+        this.terminalNode2.put("178.20.2.0",new NodeData("192.118.1.30", "127.0.0.1" , 6003));
+        this.terminalNode2.put("10.4.2.0",new NodeData("192.118.1.20", "127.0.0.1" , 6502));
+
+        //178.20.2.0
+        this.terminalNode3.put("197.197.197.0", new NodeData("178.20.2.2", "127.0.0.1" , 7001));
+        this.terminalNode3.put("123.7.2.0",new NodeData("178.20.2.7", "127.0.0.1" , 6503));
+        this.terminalNode3.put("10.4.2.0",new NodeData("178.20.2.2", "127.0.0.1" , 7001));
+        this.terminalNode3.put("192.118.1.0",new NodeData("178.20.2.4", "127.0.0.1" , 8502));
+
+        //123.7.2.0
+        this.terminalNode4.put("197.197.197.0", new NodeData("123.7.13.3", "127.0.0.1" , 1));
+        this.terminalNode4.put("192.118.1.0",new NodeData("123.7.2.6", "127.0.0.1" , 5503));
+        this.terminalNode4.put("178.20.2.0",new NodeData("123.7.2.1", "127.0.0.1" , 6501));
+        this.terminalNode4.put("10.4.2.0",new NodeData("123.7.13.3", "127.0.0.1" , 8002));
+
+        //10.4.2.0
+        this.terminalNode5.put("197.197.197.0",new NodeData("10.4.2.30", "127.0.0.1" , 7502));
+        this.terminalNode5.put("123.7.2.0",new NodeData("10.4.2.4", "127.0.0.1" , 8001));
+        this.terminalNode5.put("192.118.1.0",new NodeData("10.4.2.5", "127.0.0.1" , 6505));
+        this.terminalNode5.put("178.20.2.0",new NodeData("10.4.2.3", "127.0.0.1" , 7002));
+
+    }
     public void fillARPTables(){
         this.arp1.put("192.118.1.2",new ARPData("1.1","1.1","localhost",5501));
         this.arp1.put("123.7.2.3",new ARPData("1.2","1.2","localhost",5502));
