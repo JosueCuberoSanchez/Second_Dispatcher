@@ -9,35 +9,16 @@
  * Cubero Sánchez Josué B42190
  */
 public class IpData {
-    private String realIp;
-    private String fakeIp;
-    private String fakePath;
-    private int distance;
-    private int port;
+    private String finalDestinyIp;
+    private String exitInterface;
+    private int exitPort;
+    private String nextInterface;
 
-    public IpData(String realIp, String fakeIp, String fakePath,int distance, int port){
-        this.realIp = realIp;
-        this.fakeIp = fakeIp;
-        this.fakePath = fakePath;
-        this.distance = distance;
-        this.port = port;
+    public IpData(String finalDestinyIp,String exitInterface, int exitPort, String nextInterface){
+        this.finalDestinyIp = finalDestinyIp;
+        this.exitInterface = exitInterface;
+        this.exitPort = exitPort;
+        this.nextInterface = nextInterface;
     }
 
-    public String getRealIp() {
-        return this.realIp;
-    }
-
-    public String getFakeIp() {
-        return this.fakeIp;
-    }
-
-    public String getFakePath() {
-        return this.fakePath;
-    }
-
-    public int getDistance() {
-        return this.distance;
-    }
-
-    public int getPort(){ return this.port; }
 }
