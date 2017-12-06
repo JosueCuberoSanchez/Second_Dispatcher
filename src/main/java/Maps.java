@@ -2,19 +2,25 @@ import javafx.util.Pair;
 
 import java.util.HashMap;
 import java.util.Map;
-
 /**
- * Created by josue on 05/12/17.
+ * Universidad de Costa Rica
+ * Facultad de Ingeniería
+ * Escuela de Ciencias de la Computación e Informática
+ * Profesora: Gabriela Barrantes
+ * Autores:
+ * Abellán Jiménez Mariana B50031
+ * Brenes Solano Silvia B41133
+ * Cubero Sánchez Josué B42190
  */
 public class Maps {
 
-    private HashMap<String, String> routing1;
-    private HashMap<String, String> routing2;
-    private HashMap<String, String> routing3;
-    private HashMap<String, String> routing4;
-    private HashMap<String, String> routing5;
-    private HashMap<String, String> routing6;
-    private HashMap<String, String> routing7;
+    private Map<String, String> routing1;
+    private Map<String, String> routing2;
+    private Map<String, String> routing3;
+    private Map<String, String> routing4;
+    private Map<String, String> routing5;
+    private Map<String, String> routing6;
+    private Map<String, String> routing7;
 
 
     private Map<String,ARPData> arp1;
