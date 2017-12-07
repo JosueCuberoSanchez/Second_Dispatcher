@@ -1,3 +1,5 @@
+package DataContainers;
+
 /**
  * Universidad de Costa Rica
  * Facultad de Ingeniería
@@ -25,23 +27,12 @@ public class NodeData {
         return path;
     }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
-
     public String getRealIp() {
         return realIp;
-    }
-
-    public void setRealIp(String realIp) {
-        this.realIp = realIp;
     }
 
     public int getPort() {
         return port;
     }
 
-    public void setPort(int port) {
-        this.port = port;
-    }
 }

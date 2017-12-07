@@ -1,15 +1,13 @@
-import javafx.util.Pair;
+package Connection;
 
-import javax.xml.soap.Node;
+import DataContainers.ARPData;
+import DataContainers.Maps;
+import DataContainers.NodeData;
+
 import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.Socket;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
-import static java.lang.System.err;
-import static java.lang.System.exit;
 
 /*/**
  * Universidad de Costa Rica
@@ -44,10 +42,11 @@ public class Client extends Connection {
             this.parseMapsForRouter();
         } else {
             System.out.println("Invalid message detected!!!");
-            err.print("ERROR");
+            return;
         }
         try {
-            System.out.println(this.finalMessage);
+            System.out.println("Sending an answer to: "+this.arrayMessage[3]+" on port "+
+                    this.arrayMessage[4] + ":\n"+this.finalMessage);
             super.createSocket("client", Integer.parseInt(this.arrayMessage[4]),this.arrayMessage[3]); //Cambiar a IP real
             this.outServer = new DataOutputStream(this.cs.getOutputStream());
             this.outServer.writeUTF(this.finalMessage);
@@ -59,9 +58,8 @@ public class Client extends Connection {
 
     /**
      * Parse a physical address table into a String
-     * @return the parsedTable received by parameter, filled
      */
-    public void parseMapsForNode(){
+    private void parseMapsForNode(){
         HashMap<String, NodeData> nodeTable = (HashMap<String, NodeData>) this.getNodeTable(Integer.parseInt(this.arrayMessage[2]));
         Iterator nodeTableIterator = nodeTable.entrySet().iterator();
         while (nodeTableIterator.hasNext()) {
@@ -74,10 +72,9 @@ public class Client extends Connection {
     }
 
     /**
-     * Parse a routing table into a String
-     * @return the parsedTable received by parameter, filled
+     * Parse a routing table and an ARP table into a String
      */
-    public void parseMapsForRouter(){
+    private void parseMapsForRouter(){
         HashMap<String,String> routing = (HashMap<String,String>) this.getRoutingTable(Integer.parseInt(this.arrayMessage[2]));
         HashMap<String, ARPData> arp = (HashMap<String, ARPData>) this.getARPTable(Integer.parseInt(this.arrayMessage[2]));
         Iterator arpIterator = arp.entrySet().iterator();
@@ -97,7 +94,12 @@ public class Client extends Connection {
         }
     }
 
-    public Map<String, NodeData> getNodeTable(int host) {
+    /**
+     * Gets the corresponding Node map depending on host number
+     * @param host the host number
+     * @return the map
+     */
+    private Map<String, NodeData> getNodeTable(int host) {
         Map<String, NodeData> map = null;
         switch (host) {
             case 1:
@@ -119,7 +121,12 @@ public class Client extends Connection {
         return map;
     }
 
-    public Map<String, String> getRoutingTable(int host) {
+    /**
+     * Gets the corresponding Routing map depending on host number
+     * @param host the host number
+     * @return the map
+     */
+    private Map<String, String> getRoutingTable(int host) {
         Map<String, String> map = null;
         switch (host) {
             case 1:
@@ -147,7 +154,12 @@ public class Client extends Connection {
         return map;
     }
 
-    public Map<String, ARPData> getARPTable(int host) {
+    /**
+     * Gets the corresponding ARP map depending on host number
+     * @param host the host number
+     * @return the map
+     */
+    private Map<String, ARPData> getARPTable(int host) {
         Map<String, ARPData> map = null;
         switch (host) {
             case 1:

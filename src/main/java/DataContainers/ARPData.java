@@ -1,3 +1,5 @@
+package DataContainers;
+
 /**
  * Universidad de Costa Rica
  * Facultad de Ingeniería
@@ -23,23 +25,12 @@ public class ARPData {
         return this.externalInterface;
     }
 
-    public void setExternalInterface(String externalInterface) {
-        this.externalInterface = externalInterface;
-    }
-
     public String getExternalInterfaceIp() {
         return this.externalInterfaceIp;
-    }
-
-    public void setExternalInterfaceIp(String externalInterfaceIp) {
-        this.externalInterfaceIp = externalInterfaceIp;
     }
 
     public int getExternalInterfacePort() {
         return this.externalInterfacePort;
     }
 
-    public void setExternalInterfacePort(int externalInterfacePort) {
-        this.externalInterfacePort = externalInterfacePort;
-    }
 }

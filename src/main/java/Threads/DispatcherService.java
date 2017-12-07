@@ -1,7 +1,6 @@
-import javafx.util.Pair;
+package Threads;
 
-import java.io.IOException;
-import java.util.Map;
+import DataContainers.Maps;
 
 /**
  * Universidad de Costa Rica
@@ -15,14 +14,14 @@ import java.util.Map;
  */
 public class DispatcherService implements Runnable {
     private Maps maps;
-    private Server server;
+    private Connection.Server server;
 
     public DispatcherService(Maps maps){
         this.maps = maps;
     }
 
     public void run() {
-        this.server = new Server(this.maps);
+        this.server = new Connection.Server(this.maps);
         try {
             this.server.startServer();
         } catch (Exception e){

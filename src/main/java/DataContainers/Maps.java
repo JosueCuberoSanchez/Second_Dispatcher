@@ -1,4 +1,5 @@
-import javax.xml.soap.Node;
+package DataContainers;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class Maps {
     private Map<String, String> routing7;
 
 
-    private Map<String,ARPData> arp1;
+    private Map<String, ARPData> arp1;
     private Map<String,ARPData> arp2;
     private Map<String,ARPData> arp3;
     private Map<String,ARPData> arp4;

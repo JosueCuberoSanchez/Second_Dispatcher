@@ -1,3 +1,5 @@
+package Connection;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -17,7 +19,6 @@ import java.net.Socket;
 public class Connection {
     private int PORT;
     private String HOST;
-    protected String serverMessage;
     protected ServerSocket ss;
     protected Socket cs;
     protected DataOutputStream outServer;

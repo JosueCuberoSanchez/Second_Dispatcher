@@ -1,7 +1,6 @@
-import javafx.util.Pair;
+package Threads;
 
-import java.util.HashMap;
-import java.util.Map;
+import DataContainers.Maps;
 
 /**
  * Universidad de Costa Rica
