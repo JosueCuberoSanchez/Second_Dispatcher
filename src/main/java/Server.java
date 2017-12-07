@@ -29,6 +29,11 @@ public class Server extends Connection {
         super.createSocket("server", 9999, "localhost");
         try {
             while (true) {
+                /*PRUEBA*/
+                String message = "1\n5\n2\nlocalhost\n3000";
+                Client clientt = new Client(this.maps);
+                clientt.startClient(message);
+                /*PRUEBA*/
                 System.out.println("\nServidor de dispatcher esperando...");
                 this.cs = this.ss.accept();
                 System.out.println("Alguien se conectó con el dispatcher");

@@ -13,13 +13,13 @@ public class Maps {
     private Map<String,NodeData> terminalNode4; //123.7.2.0
     private Map<String,NodeData> terminalNode5; //10.4.2.0
 
-    private HashMap<String, String> routing1;
-    private HashMap<String, String> routing2;
-    private HashMap<String, String> routing3;
-    private HashMap<String, String> routing4;
-    private HashMap<String, String> routing5;
-    private HashMap<String, String> routing6;
-    private HashMap<String, String> routing7;
+    private Map<String, String> routing1;
+    private Map<String, String> routing2;
+    private Map<String, String> routing3;
+    private Map<String, String> routing4;
+    private Map<String, String> routing5;
+    private Map<String, String> routing6;
+    private Map<String, String> routing7;
 
 
     private Map<String,ARPData> arp1;
@@ -180,5 +180,81 @@ public class Maps {
         this.arp7.put("178.20.2.30",new ARPData("178.20.2.7","localhost",6503));
         this.arp7.put("178.20.2.4",new ARPData("178.20.2.7","localhost",7005));
         this.arp7.put("178.20.2.50",new ARPData("178.20.2.50","localhost",7003));
+    }
+
+    public Map<String, NodeData> getTerminalNode1() {
+        return this.terminalNode1;
+    }
+
+    public Map<String, NodeData> getTerminalNode2() {
+        return this.terminalNode2;
+    }
+
+    public Map<String, NodeData> getTerminalNode3() {
+        return this.terminalNode3;
+    }
+
+    public Map<String, NodeData> getTerminalNode4() {
+        return this.terminalNode4;
+    }
+
+    public Map<String, NodeData> getTerminalNode5() {
+        return this.terminalNode5;
+    }
+
+    public Map<String, String> getRouting1() {
+        return this.routing1;
+    }
+
+    public Map<String, String> getRouting2() {
+        return this.routing2;
+    }
+
+    public Map<String, String> getRouting3() {
+        return this.routing3;
+    }
+
+    public Map<String, String> getRouting4() {
+        return this.routing4;
+    }
+
+    public Map<String, String> getRouting5() {
+        return this.routing5;
+    }
+
+    public Map<String, String> getRouting6() {
+        return this.routing6;
+    }
+
+    public Map<String, String> getRouting7() {
+        return this.routing7;
+    }
+
+    public Map<String, ARPData> getArp1() {
+        return this.arp1;
+    }
+
+    public Map<String, ARPData> getArp2() {
+        return this.arp2;
+    }
+
+    public Map<String, ARPData> getArp3() {
+        return this.arp3;
+    }
+
+    public Map<String, ARPData> getArp4() {
+        return this.arp4;
+    }
+
+    public Map<String, ARPData> getArp5() {
+        return this.arp5;
+    }
+
+    public Map<String, ARPData> getArp6() {
+        return this.arp6;
+    }
+
+    public Map<String, ARPData> getArp7() {
+        return this.arp7;
     }
 }

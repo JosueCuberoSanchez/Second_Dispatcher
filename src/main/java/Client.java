@@ -1,9 +1,15 @@
 import javafx.util.Pair;
 
+import javax.xml.soap.Node;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.Socket;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import static java.lang.System.err;
+import static java.lang.System.exit;
 
 /*/**
  * Universidad de Costa Rica
@@ -17,9 +23,12 @@ import java.util.Map;
  */
 public class Client extends Connection {
     private Maps maps;
+    private String[] arrayMessage;
+    private String finalMessage;
 
     public  Client(Maps maps){
         this.maps = maps;
+        this.finalMessage = "";
     }
 
     /**
@@ -28,60 +37,141 @@ public class Client extends Connection {
      * @param message The message received from the listening socket
      */
     public void startClient(String message){
-
+        this.arrayMessage = message.split("\n");
+        if(this.arrayMessage[0].equalsIgnoreCase("0")){ //es de un terminal
+            this.parseMapsForNode();
+        } else if(this.arrayMessage[0].equalsIgnoreCase("1")){ //es de un router
+            this.parseMapsForRouter();
+        } else {
+            System.out.println("Invalid message detected!!!");
+            err.print("ERROR");
+        }
+        try {
+            System.out.println(this.finalMessage);
+            super.createSocket("client", Integer.parseInt(this.arrayMessage[4]),this.arrayMessage[3]); //Cambiar a IP real
+            this.outServer = new DataOutputStream(this.cs.getOutputStream());
+            this.outServer.writeUTF(this.finalMessage);
+            this.cs.close();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
      * Parse a physical address table into a String
-     * @param parsedTable a 3 position array to store destiny ip, destiny port and the final message
-     * @param messageArray the message received from the socket split by \n
      * @return the parsedTable received by parameter, filled
      */
-    /*public String[] parseTableForNode(String[] parsedTable,String[] messageArray){
-        Iterator iterator = this.oneToOneRelation.entrySet().iterator();
-        while(iterator.hasNext()){
-            Map.Entry pair = (Map.Entry) iterator.next();
-            parsedTable[0] = parsedTable[0] + pair.getKey().toString() + ",";
-            Pair<String,String> par = (Pair<String,String>)pair.getValue();
-            parsedTable[0] = parsedTable[0] + par.getKey() + "," + par.getValue() + "\n";
-        } //ya aca tiene el campo de mensaje lleno ak7
-        this.getPortAndIp(messageArray,parsedTable);
-        return parsedTable;
-    }*/
+    public void parseMapsForNode(){
+        HashMap<String, NodeData> nodeTable = (HashMap<String, NodeData>) this.getNodeTable(Integer.parseInt(this.arrayMessage[2]));
+        Iterator nodeTableIterator = nodeTable.entrySet().iterator();
+        while (nodeTableIterator.hasNext()) {
+            Map.Entry pair = (Map.Entry)nodeTableIterator.next();
+            NodeData nodeData = (NodeData) pair.getValue();
+            this.finalMessage = this.finalMessage + pair.getKey() + "," + nodeData.getPath() + "," +
+                    nodeData.getRealIp() + "," + nodeData.getPort() + "\n";
+            nodeTableIterator.remove(); // avoids a ConcurrentModificationException
+        }
+    }
 
     /**
      * Parse a routing table into a String
-     * @param parsedTable a 3 position array to store destiny ip, destiny port and the final message
-     * @param messageArray the message received from the socket split by \n
-     * @param router a boolean that defines to which router the table is going
      * @return the parsedTable received by parameter, filled
      */
-    /*public String[] parseTableForRouter(String[] parsedTable,String[] messageArray, boolean router){
-        Map<String,IpData> temporalMap;
-        if(router){
-            temporalMap = this.ipTableJosue;
-        } else {
-            temporalMap = this.ipTableSilvia;
+    public void parseMapsForRouter(){
+        HashMap<String,String> routing = (HashMap<String,String>) this.getRoutingTable(Integer.parseInt(this.arrayMessage[2]));
+        HashMap<String, ARPData> arp = (HashMap<String, ARPData>) this.getARPTable(Integer.parseInt(this.arrayMessage[2]));
+        Iterator arpIterator = arp.entrySet().iterator();
+        while (arpIterator.hasNext()) {
+            Map.Entry pair = (Map.Entry)arpIterator.next();
+            ARPData arpData = (ARPData) pair.getValue();
+            this.finalMessage = this.finalMessage + pair.getKey() + "," + arpData.getExternalInterface()
+                    + "," + arpData.getExternalInterfaceIp() + "," + arpData.getExternalInterfacePort() + "\n";
+            arpIterator.remove(); // avoids a ConcurrentModificationException
         }
-        Iterator iterator = temporalMap.entrySet().iterator();
-        while(iterator.hasNext()){
-            Map.Entry pair = (Map.Entry) iterator.next();
-            parsedTable[0] = parsedTable[0] + pair.getKey().toString() + ",";
-            IpData ipData = (IpData)pair.getValue();
-            parsedTable[0] = parsedTable[0] + ipData.getRealIp() + "," + ipData.getFakeIp() + "," +
-                    ipData.getFakePath() + "," + ipData.getDistance() + "," + ipData.getPort() + "\n";
-        } //ya aca tiene el campo de mensaje lleno ak7
-        this.getPortAndIp(messageArray,parsedTable);
-        return parsedTable;
-    }*/
+        this.finalMessage = this.finalMessage + "-";
+        Iterator routingIterator = routing.entrySet().iterator();
+        while (routingIterator.hasNext()) {
+            Map.Entry pair = (Map.Entry)routingIterator.next();
+            this.finalMessage = this.finalMessage + pair.getKey() + "," + pair.getValue() + "\n";
+            routingIterator.remove(); // avoids a ConcurrentModificationException
+        }
+    }
 
-    /**
-     * Fills the missing fields from the message array (ip and port)
-     * @param parsedTable a 3 position array to store destiny ip, destiny port and the final message
-     * @param messageArray the message received from the socket split by \n
-     */
-    public void getPortAndIp(String[] messageArray,String[] parsedTable){
-        parsedTable[1] = messageArray[4];
-        parsedTable[2] = messageArray[2];
+    public Map<String, NodeData> getNodeTable(int host) {
+        Map<String, NodeData> map = null;
+        switch (host) {
+            case 1:
+                map = this.maps.getTerminalNode1();
+                break;
+            case 2:
+                map = this.maps.getTerminalNode2();
+                break;
+            case 3:
+                map = this.maps.getTerminalNode3();
+                break;
+            case 4:
+                map = this.maps.getTerminalNode4();
+                break;
+            case 5:
+                map = this.maps.getTerminalNode5();
+                break;
+        }
+        return map;
+    }
+
+    public Map<String, String> getRoutingTable(int host) {
+        Map<String, String> map = null;
+        switch (host) {
+            case 1:
+                map = this.maps.getRouting1();
+                break;
+            case 2:
+                map = this.maps.getRouting2();
+                break;
+            case 3:
+                map = this.maps.getRouting3();
+                break;
+            case 4:
+                map = this.maps.getRouting4();
+                break;
+            case 5:
+                map = this.maps.getRouting5();
+                break;
+            case 6:
+                map = this.maps.getRouting6();
+                break;
+            case 7:
+                map = this.maps.getRouting7();
+                break;
+        }
+        return map;
+    }
+
+    public Map<String, ARPData> getARPTable(int host) {
+        Map<String, ARPData> map = null;
+        switch (host) {
+            case 1:
+                map = this.maps.getArp1();
+                break;
+            case 2:
+                map = this.maps.getArp2();
+                break;
+            case 3:
+                map = this.maps.getArp3();
+                break;
+            case 4:
+                map = this.maps.getArp4();
+                break;
+            case 5:
+                map = this.maps.getArp5();
+                break;
+            case 6:
+                map = this.maps.getArp6();
+                break;
+            case 7:
+                map = this.maps.getArp7();
+                break;
+        }
+        return map;
     }
 }
