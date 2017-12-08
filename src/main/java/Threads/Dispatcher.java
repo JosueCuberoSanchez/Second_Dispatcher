@@ -14,17 +14,15 @@ import DataContainers.Maps;
  */
 
 public class Dispatcher {
-    private Maps maps;
 
     public Dispatcher(){
-        this.maps = new Maps();
     }
 
     /**
      * Starts the dispatcher server
      */
     public void startDispatcher(){
-        Thread thread = new Thread(new DispatcherService(this.maps));
+        Thread thread = new Thread(new DispatcherService());
         thread.start();
     }
 }

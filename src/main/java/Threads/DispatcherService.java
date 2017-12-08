@@ -13,15 +13,13 @@ import DataContainers.Maps;
  * Cubero Sánchez Josué B42190
  */
 public class DispatcherService implements Runnable {
-    private Maps maps;
     private Connection.Server server;
 
-    public DispatcherService(Maps maps){
-        this.maps = maps;
+    public DispatcherService(){
     }
 
     public void run() {
-        this.server = new Connection.Server(this.maps);
+        this.server = new Connection.Server();
         try {
             this.server.startServer();
         } catch (Exception e){

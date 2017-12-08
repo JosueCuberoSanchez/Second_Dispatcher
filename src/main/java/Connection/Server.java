@@ -18,8 +18,8 @@ import java.io.IOException;
 public class Server extends Connection {
     private Maps maps;
 
-    public Server(Maps maps){
-       this.maps = maps;
+    public Server(){
+        this.maps = new Maps();
     }
 
     /**
@@ -40,7 +40,7 @@ public class Server extends Connection {
                 System.out.println("Alguien se conectó con el dispatcher");
                 this.outClient = new DataInputStream(this.cs.getInputStream());
                 String newMessage = this.outClient.readUTF();
-                //System.out.println("MENSAJE NUEVO!\n"+newMessage+"\n"); //comentar
+                System.out.println("MENSAJE NUEVO!\n"+newMessage+"\n"); //comentar
                 Client client = new Client(this.maps);
                 client.startClient(newMessage);
             }

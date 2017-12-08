@@ -67,7 +67,7 @@ public class Client extends Connection {
             NodeData nodeData = (NodeData) pair.getValue();
             this.finalMessage = this.finalMessage + pair.getKey() + "," + nodeData.getPath() + "," +
                     nodeData.getRealIp() + "," + nodeData.getPort() + "\n";
-            nodeTableIterator.remove(); // avoids a ConcurrentModificationException
+           //nodeTableIterator.remove(); // avoids a ConcurrentModificationException
         }
     }
 
@@ -81,16 +81,17 @@ public class Client extends Connection {
         while (arpIterator.hasNext()) {
             Map.Entry pair = (Map.Entry)arpIterator.next();
             ARPData arpData = (ARPData) pair.getValue();
-            this.finalMessage = this.finalMessage + pair.getKey() + "," + arpData.getExternalInterface()
-                    + "," + arpData.getExternalInterfaceIp() + "," + arpData.getExternalInterfacePort() + "\n";
-            arpIterator.remove(); // avoids a ConcurrentModificationException
+            this.finalMessage = this.finalMessage + pair.getKey() + "," + arpData.getExternalInterface() + "," +
+                    arpData.getExternalInterfaceIp() + "," + arpData.getExternalInterfacePort() + ","
+                    + arpData.getInternalInterfacePort() + "\n";
+            //arpIterator.remove(); // avoids a ConcurrentModificationException
         }
         this.finalMessage = this.finalMessage + "-";
         Iterator routingIterator = routing.entrySet().iterator();
         while (routingIterator.hasNext()) {
             Map.Entry pair = (Map.Entry)routingIterator.next();
             this.finalMessage = this.finalMessage + pair.getKey() + "," + pair.getValue() + "\n";
-            routingIterator.remove(); // avoids a ConcurrentModificationException
+            //routingIterator.remove(); // avoids a ConcurrentModificationException
         }
     }
 

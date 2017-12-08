@@ -14,11 +14,13 @@ public class ARPData {
     private String externalInterface;
     private String externalInterfaceIp;
     private int externalInterfacePort;
+    private int internalInterfacePort;
 
-    public ARPData(String externalInterface, String externalInterfaceIp, int externalInterfacePort) {
+    public ARPData(String externalInterface, String externalInterfaceIp, int externalInterfacePort,int internalInterfacePort) {
         this.externalInterface = externalInterface;
         this.externalInterfaceIp = externalInterfaceIp;
         this.externalInterfacePort = externalInterfacePort;
+        this.internalInterfacePort = internalInterfacePort;
     }
 
     public String getExternalInterface() {
@@ -33,4 +35,7 @@ public class ARPData {
         return this.externalInterfacePort;
     }
 
+    public int getInternalInterfacePort() {
+        return this.internalInterfacePort;
+    }
 }
