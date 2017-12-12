@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-/*/**
+/**
  * Universidad de Costa Rica
  * Facultad de Ingeniería
  * Escuela de Ciencias de la Computación e Informática
